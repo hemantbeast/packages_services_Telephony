@@ -1024,10 +1024,9 @@ public class DisconnectCauseUtil {
                 resourceId = R.string.callFailed_too_many_calls;
                 break;
             case android.telephony.DisconnectCause.IMS_SIP_ALTERNATE_EMERGENCY_CALL:
-                int airplaneMode = Settings.Global.getInt(context.getContentResolver(),
-                        Settings.Global.AIRPLANE_MODE_ON, 0);
-                resourceId = R.string.incall_error_call_failed;
-                if (airplaneMode != 0) {
+                boolean isAirplaneModeOn = Settings.Global.getInt(context.getContentResolver(),
+                        Settings.Global.AIRPLANE_MODE_ON, 0) > 0;
+                if (isAirplaneModeOn) {
                     resourceId = R.string.incall_error_power_off;
                 }
                 break;
